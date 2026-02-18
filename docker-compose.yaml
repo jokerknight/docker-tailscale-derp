@@ -1,6 +1,6 @@
 services:
   tailscale-derp:
-    image: jokerknight/docker-tailscale-derp
+    image: knighttools/docker-tailscale-derp
     container_name: docker-tailscale-derp
     ports:
       - "0.0.0.0:3478:3478"
