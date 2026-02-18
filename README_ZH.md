@@ -32,10 +32,11 @@ cd docker-tailscale-derp
 cp example.env .env
 ```
 
-编辑 `.env` 文件，修改 `DERP_HOSTNAME` 为您的服务器 IP 地址：
+编辑 `.env` 文件，修改 `DERP_HOSTNAME` 和 `DERP_PORT`：
 
 ```env
 DERP_HOSTNAME=your.server.ip
+DERP_PORT=3478
 ```
 
 ### 3. 启动服务
@@ -51,11 +52,12 @@ docker-compose up -d
 | 变量名 | 默认值 | 说明 |
 |--------|--------|------|
 | `DERP_HOSTNAME` | 无 | 服务器 IP 地址或域名 |
-| `DERP_ADDR` | `:3478` | DERP 服务监听端口 |
+| `DERP_PORT` | `3478` | DERP 服务监听端口 |
 | `DERP_CERTDIR` | `/ssl` | 证书存储目录 |
 
 ### 端口映射
 
+根据 `DERP_PORT` 配置自动映射，默认为：
 - `3478` - DERP HTTP/HTTPS 端口
 - `3478/udp` - DERP UDP 端口
 
@@ -92,6 +94,7 @@ Using self-signed certificate for IP address "1.2.3.4". Configure it in DERPMap 
             "Name": "custom",
             "RegionID": 900,
             "HostName": "your.server.ip",
+            "DERPPort": 3478,  // 端口号，需与 .env 中的 DERP_PORT 一致
             "CertName": "sha256-raw:xxxx"  // 从启动日志中复制
           }
         ]

@@ -32,10 +32,11 @@ Copy the example environment file and modify it:
 cp example.env .env
 ```
 
-Edit `.env` file and set `DERP_HOSTNAME` to your server IP address:
+Edit `.env` file and set `DERP_HOSTNAME` and `DERP_PORT`:
 
 ```env
 DERP_HOSTNAME=your.server.ip
+DERP_PORT=3478
 ```
 
 ### 3. Start the Service
@@ -51,11 +52,12 @@ docker-compose up -d
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `DERP_HOSTNAME` | (none) | Server IP address or domain name |
-| `DERP_ADDR` | `:3478` | DERP service listening port |
+| `DERP_PORT` | `3478` | DERP service listening port |
 | `DERP_CERTDIR` | `/ssl` | Certificate storage directory |
 
 ### Port Mapping
 
+Automatically mapped based on `DERP_PORT` configuration, default to:
 - `3478` - DERP HTTP/HTTPS port
 - `3478/udp` - DERP UDP port
 
@@ -92,6 +94,7 @@ Using self-signed certificate for IP address "1.2.3.4". Configure it in DERPMap 
             "Name": "custom",
             "RegionID": 900,
             "HostName": "your.server.ip",
+            "DERPPort": 3478,  // Port number, must match DERP_PORT in .env
             "CertName": "sha256-raw:xxxx"  // Copy from startup logs
           }
         ]
