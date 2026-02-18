@@ -190,6 +190,10 @@ A: Connect using Tailscale client and check logs, or view connection status in T
 
 A: Due to static compilation, all mainstream architectures are supported: x86_64, ARM64, ARMv7, etc.
 
+### Q: How to verify if DERP node is working?
+
+A: Use a machine with Tailscale installed and run `tailscale netcheck`. If the configured DERP nodes appear and can ping each other, the configuration is successful.
+
 ## License
 
 Apache License 2.0

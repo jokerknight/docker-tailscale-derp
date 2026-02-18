@@ -190,6 +190,10 @@ A: 使用 Tailscale 客户端连接并检查日志，或在 Tailscale 控制台�
 
 A: 由于使用静态编译，支持所有主流架构：x86_64、ARM64、ARMv7 等。
 
+### Q: 如何验证 DERP 节点是否正常工作？
+
+A: 找一台安装了 Tailscale 的机器，执行 `tailscale netcheck`，如果出现刚才配置的 DERP 节点，且节点之间能互相 ping 通，则说明配置成功。
+
 ## 许可证
 
 Apache License 2.0
