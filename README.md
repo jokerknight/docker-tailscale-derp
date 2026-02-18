@@ -41,9 +41,35 @@ DERP_PORT=3478
 
 ### 3. Start the Service
 
+**Option 1: Use Docker Hub image directly (Recommended)**
+
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
+
+**Option 2: Build locally**
+
+If you need custom builds or use override files:
+
+```bash
+docker compose up -d --build
+```
+
+Or use Make commands:
+
+```bash
+make buildup  # Build and start
+```
+
+**Option 3: Use Make shortcuts**
+
+```bash
+make up      # Start service
+make down    # Stop service
+make logs    # View logs
+```
+
+**Note:** This project enforces `--verify-clients` client verification. You must install and run Tailscale client on the host machine first, otherwise the service will not start properly. Client verification is an essential security mechanism to prevent unauthorized DERP nodes from being abused.
 
 ## Configuration
 
@@ -108,8 +134,18 @@ Using self-signed certificate for IP address "1.2.3.4". Configure it in DERPMap 
 
 ## Building Docker Image
 
+**Using Docker command:**
+
 ```bash
 docker build -t docker-tailscale-derp .
+```
+
+**Using Make commands:**
+
+```bash
+make build    # Local build (current architecture)
+make push     # Multi-arch build and push to Docker Hub
+make release  # One-click release
 ```
 
 ## FAQ

@@ -41,9 +41,35 @@ DERP_PORT=3478
 
 ### 3. 启动服务
 
+**方式一：直接使用 Docker Hub 镜像（推荐）**
+
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
+
+**方式二：本地构建镜像**
+
+如果您需要自定义构建或使用 override 文件：
+
+```bash
+docker compose up -d --build
+```
+
+或使用 Make 命令：
+
+```bash
+make buildup
+```
+
+**方式三：使用 Make 快捷命令**
+
+```bash
+make up      # 启动服务
+make down    # 停止服务
+make logs    # 查看日志
+```
+
+**注意：** 本项目强制启用了 `--verify-clients` 客户端验证，您必须先在宿主机上安装并运行 Tailscale 客户端，否则服务将无法正常启动。客户端验证是安全机制的重要组成部分，用于防止未授权的 DERP 节点被滥用。
 
 ## 配置说明
 
@@ -108,8 +134,18 @@ Using self-signed certificate for IP address "1.2.3.4". Configure it in DERPMap 
 
 ## 构建 Docker 镜像
 
+**使用 Docker 命令：**
+
 ```bash
 docker build -t docker-tailscale-derp .
+```
+
+**使用 Make 命令：**
+
+```bash
+make build    # 本地构建（当前架构）
+make push     # 多架构构建并推送到 Docker Hub
+make release  # 一键发布
 ```
 
 ## 常见问题
