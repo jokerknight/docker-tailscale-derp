@@ -1,8 +1,8 @@
 # 编译
 FROM golang:alpine AS builder
 
-# 切换模块源为中国Go模块代理服务器
-# RUN go env -w GOPROXY=https://goproxy.cn,direct
+# 设置 Go 模块代理为国内镜像源
+RUN go env -w GOPROXY=https://goproxy.cn,direct
 
 # 拉取代码
 RUN go install tailscale.com/cmd/derper@latest
@@ -24,7 +24,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 
 ENV LANG=C.UTF-8
 
-# 添加源
+# 使用清华大学 Alpine 镜像源
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 
 # 创建证书目录（IP 方式会自动生成自签名证书）

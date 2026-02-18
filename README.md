@@ -71,6 +71,30 @@ make logs    # View logs
 
 **Note:** This project enforces `--verify-clients` client verification. You must install and run Tailscale client on the host machine first, otherwise the service will not start properly. Client verification is an essential security mechanism to prevent unauthorized DERP nodes from being abused.
 
+**Network Optimization in China:**
+
+If you encounter network issues when building in China, configure Docker mirror accelerators:
+
+```bash
+# Create or edit Docker daemon configuration
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json > /dev/null <<EOF
+{
+  "registry-mirrors": [
+    "https://docker.m.daocloud.io",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://docker.1panel.live"
+  ]
+}
+EOF
+
+# Restart Docker service
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+A sample `daemon.json` file is also provided in the project root for reference.
+
 ## Configuration
 
 ### Environment Variables

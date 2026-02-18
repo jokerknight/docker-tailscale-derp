@@ -1,4 +1,7 @@
 services:
   tailscale-derp:
-    build: .
-    image: knighttools/docker-tailscale-derp:latest
+    build:
+      context: .
+      args:
+        BUILDKIT_INLINE_CACHE: 1
+    image: knighttools/docker-tailscale-derp:local

@@ -71,6 +71,30 @@ make logs    # 查看日志
 
 **注意：** 本项目强制启用了 `--verify-clients` 客户端验证，您必须先在宿主机上安装并运行 Tailscale 客户端，否则服务将无法正常启动。客户端验证是安全机制的重要组成部分，用于防止未授权的 DERP 节点被滥用。
 
+**国内网络优化：**
+
+如果在中国网络环境下构建遇到问题，建议配置 Docker 镜像加速器：
+
+```bash
+# 创建或编辑 Docker daemon 配置文件
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json > /dev/null <<EOF
+{
+  "registry-mirrors": [
+    "https://docker.m.daocloud.io",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://docker.1panel.live"
+  ]
+}
+EOF
+
+# 重启 Docker 服务
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+项目根目录也提供了 `daemon.json` 示例文件供参考。
+
 ## 配置说明
 
 ### 环境变量
