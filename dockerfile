@@ -32,7 +32,7 @@ RUN mkdir /ssl
 
 # 设置环境变量，可通过 docker-compose 覆盖
 ENV DERP_HOSTNAME="" \
-    DERP_ADDR=":3478" \
+    DERP_PORT="3478" \
     DERP_CERTDIR="/ssl"
 
-CMD ./derper -hostname $DERP_HOSTNAME -a $DERP_ADDR -certmode manual -certdir $DERP_CERTDIR --verify-clients
+CMD ./derper -hostname $DERP_HOSTNAME -a :$DERP_PORT -certmode manual -certdir $DERP_CERTDIR --verify-clients
