@@ -35,4 +35,4 @@ ENV DERP_HOSTNAME="" \
     DERP_PORT="3478" \
     DERP_CERTDIR="/ssl"
 
-CMD ["./derper", "-hostname", "$DERP_HOSTNAME", "-a", ":$DERP_PORT", "-certmode", "manual", "-certdir", "$DERP_CERTDIR", "--verify-clients"]
+CMD ["sh", "-c", "./derper -hostname $DERP_HOSTNAME -a :$DERP_PORT -certmode manual -certdir $DERP_CERTDIR --verify-clients"]
