@@ -13,9 +13,6 @@ buildup:
 down:
 	docker compose down
 
-down:
-	docker compose down
-
 logs:
 	docker compose logs -f
 

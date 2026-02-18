@@ -4,4 +4,3 @@ services:
       context: .
       args:
         BUILDKIT_INLINE_CACHE: 1
-    image: knighttools/docker-tailscale-derp:local
