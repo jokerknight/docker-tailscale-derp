@@ -1,0 +1,15 @@
+services:
+  tailscale-derp:
+    image: jokerknight/docker-tailscale-derp
+    container_name: docker-tailscale-derp
+    ports:
+      - "0.0.0.0:3478:3478"
+      - "0.0.0.0:3478:3478/udp"
+    environment:
+      - DERP_HOSTNAME=${DERP_HOSTNAME:-1.2.3.4}
+      - DERP_ADDR=:3478
+      - DERP_CERTDIR=/ssl
+    volumes:
+      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock # 映射本地 tailscale 客户端验证连接，用来验证是否被偷
+      - ./certs:/ssl  # 证书目录，持久化保存自动生成的证书
+    restart: always
