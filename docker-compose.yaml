@@ -2,7 +2,6 @@ services:
   tailscale-derp:
     image: knighttools/docker-tailscale-derp
     container_name: docker-tailscale-derp
-    restart: unless-stopped
     ports:
       - "0.0.0.0:${DERP_PORT:-3478}:${DERP_PORT:-3478}"
       - "0.0.0.0:${DERP_PORT:-3478}:${DERP_PORT:-3478}/udp"
