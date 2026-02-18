@@ -22,7 +22,7 @@ COPY --from=builder /etc/derp/derper .
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' > /etc/timezone
 
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 
 # 添加源
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
@@ -35,4 +35,4 @@ ENV DERP_HOSTNAME="" \
     DERP_PORT="3478" \
     DERP_CERTDIR="/ssl"
 
-CMD ./derper -hostname $DERP_HOSTNAME -a :$DERP_PORT -certmode manual -certdir $DERP_CERTDIR --verify-clients
+CMD ["./derper", "-hostname", "$DERP_HOSTNAME", "-a", ":$DERP_PORT", "-certmode", "manual", "-certdir", "$DERP_CERTDIR", "--verify-clients"]
