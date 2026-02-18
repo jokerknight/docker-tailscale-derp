@@ -8,7 +8,10 @@ up:
 	docker compose up -d
 
 buildup:
-	docker compose up -d --build
+	docker compose --file docker-compose.yaml --file docker-compose.override.yaml up -d --build
+
+down:
+	docker compose down
 
 down:
 	docker compose down

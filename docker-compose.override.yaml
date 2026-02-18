@@ -1,6 +1,4 @@
-version: '3.8'
-
 services:
-  atailscale-derp:
+  tailscale-derp:
     build: .
     image: knighttools/docker-tailscale-derp:latest
