@@ -20,7 +20,7 @@ Docker-based deployment solution for Tailscale DERP (Detected Encrypted Relay Pr
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/docker-tailscale-derp.git
+git clone https://github.com/jokerknight/docker-tailscale-derp.git
 cd docker-tailscale-derp
 ```
 

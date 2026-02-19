@@ -20,7 +20,7 @@
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/yourusername/docker-tailscale-derp.git
+git clone https://github.com/jokerknight/docker-tailscale-derp.git
 cd docker-tailscale-derp
 ```
 
